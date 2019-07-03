@@ -33,10 +33,18 @@
     </div>
     <div class="row row-custom mt-3">
         <div class="col-3">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    发表
-                </a>
+            <div class="card">
+                <img class="card-img-top mx-auto d-block mt-3" src="./img/avatar.png" alt="Card image cap" style="width: 48px !important;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">admin</h5>
+                    <p class="card-text">
+                        <small>2019-7-3 13:15</small>
+                    </p>
+                    <a href="#" class="card-link">退出登录</a>
+                </div>
+            </div>
+            <div class="list-group mt-3">
+                <a href="#" class="list-group-item list-group-item-action active">发表</a>
                 <a href="#" class="list-group-item list-group-item-action">查看</a>
                 <a href="#" class="list-group-item list-group-item-action">我的回复</a>
                 <a href="#" class="list-group-item list-group-item-action">我的留言</a>
@@ -45,13 +53,13 @@
         <div class="col-9">
             <h4>发表留言</h4>
             <form action="">
-                <div class="form-group row">
-                    <label for="exampleFormControlInput1">标题</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="请输入标题">
+                <div class="form-group mt-3">
+                    <label for="guestBook_title">标题</label>
+                    <input type="email" class="form-control" id="guestBook_title" placeholder="请输入标题">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">留言</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                    <label for="guestBook_content">留言</label>
+                    <textarea class="form-control" id="guestBook_content" rows="10"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">发表</button>
             </form>
