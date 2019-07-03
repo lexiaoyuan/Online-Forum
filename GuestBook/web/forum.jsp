@@ -6,11 +6,63 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>forum</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/forum.css">
+    <title>Forum登录</title>
 </head>
-<body>
-    登录成功
+
+<body class="bg-light">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center py-4 mt-2">
+            <img class="img-fluid" src="./img/github.png" alt="GitHub">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h4 class="text-muted font-weight-light mt-1">Online Forum</h4>
+        </div>
+    </div>
+    <div class="row row-custom mt-3">
+        <div class="col-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    发表
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">查看</a>
+                <a href="#" class="list-group-item list-group-item-action">我的回复</a>
+                <a href="#" class="list-group-item list-group-item-action">我的留言</a>
+            </div>
+        </div>
+        <div class="col-9">
+            <h4>发表留言</h4>
+            <form action="">
+                <div class="form-group row">
+                    <label for="exampleFormControlInput1">标题</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="请输入标题">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">留言</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">发表</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
