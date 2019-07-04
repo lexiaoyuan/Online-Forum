@@ -21,27 +21,27 @@
 
 <body class="bg-light">
 <div class="container-fluid">
-    <div class="row">
-        <div class="col text-center py-4 mt-2">
-            <img class="img-fluid" src="./img/github.png" alt="GitHub">
+    <div class="row row-custom mt-3 justify-content-center align-items-center">
+        <div class="col text-right">
+            <img src="./img/github.png" alt="Forum">
         </div>
-    </div>
-    <div class="row">
-        <div class="col text-center">
-            <h4 class="text-muted font-weight-light mt-1">Online Forum</h4>
+        <div class="col">
+            <h4 class="text-muted mt-1">Online Forum</h4>
         </div>
     </div>
     <div class="row row-custom mt-3">
         <div class="col-3">
             <div class="card">
-                <img class="card-img-top mx-auto d-block mt-3" src="./img/avatar.png" alt="Card image cap" style="width: 48px !important;">
+                <img class="card-img-top mx-auto d-block mt-3" src="./img/avatar.png" alt="avatar" style="width: 48px !important;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">admin</h5>
-                    <p class="card-text">
+                    <h5 class="card-title mt-n2">admin</h5>
+                    <p class="card-text mt-n1 mb-n2">
                         <small>2019-7-3 13:15</small>
                     </p>
-                    <a href="#" class="card-link">退出登录</a>
                 </div>
+                <%--<div class="card-footer text-center">--%>
+                    <%--<a href="#" class="card-link">退出登录</a>--%>
+                <%--</div>--%>
             </div>
             <div class="list-group mt-3">
                 <a href="#" class="list-group-item list-group-item-action active">发表</a>
@@ -52,16 +52,16 @@
         </div>
         <div class="col-9">
             <h4>发表留言</h4>
-            <form action="">
+            <form action="ForumServlet">
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
                     <input type="email" class="form-control" id="guestBook_title" placeholder="请输入标题">
                 </div>
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
-                    <textarea class="form-control" id="guestBook_content" rows="10"></textarea>
+                    <textarea class="form-control" id="guestBook_content" rows="10" placeholder="请输入留言。。。"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">发表</button>
+                <button type="submit" class="btn btn-primary btn-block mb-2">发 表</button>
             </form>
         </div>
     </div>

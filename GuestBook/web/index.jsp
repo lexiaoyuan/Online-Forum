@@ -45,7 +45,7 @@
             </label>
             <input type="password" class="form-control form-control-sm" id="userpwdInput" name="userpwd" placeholder="请输入密码">
           </div>
-          <button type="submit" class="btn rounded-sm btn-primary-custom btn-block btn-sm text-white mt-4">登录</button>
+          <button type="submit" class="btn rounded-sm btn-primary-custom btn-block btn-sm text-white mt-4">登 录</button>
         </form>
       </div>
     </div>
