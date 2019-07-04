@@ -23,7 +23,6 @@ public class GuestBook_dao {
         } finally {
             JdbcUtil.free(null, ps, conn);
         }
-
         return guestBook;
     }
 

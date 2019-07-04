@@ -30,16 +30,16 @@ public class LoginServlet extends HttpServlet {
 
         session.setAttribute("username", username);
 
-        String login_msg;
+        String toast;
 
         try {
-            if (username.equals("")) {
-                login_msg = "用户名不能为空";
-                request.setAttribute("login_msg", login_msg);
+            if (username == "") {
+                toast = "用户名不能为空";
+                request.setAttribute("toast", toast);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-            } else if (userpwd.equals("")) {
-                login_msg = "密码不能为空";
-                request.setAttribute("login_msg", login_msg);
+            } else if (userpwd == "") {
+                toast = "密码不能为空";
+                request.setAttribute("toast", toast);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 conn = JdbcUtil.getConnection();
@@ -49,12 +49,12 @@ public class LoginServlet extends HttpServlet {
                 ps.setString(2, userpwd);
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                    login_msg = "登录成功";
-                    request.setAttribute("login_msg", login_msg);
+                    toast = "登录成功";
+                    request.setAttribute("toast", toast);
                     request.getRequestDispatcher("forum.jsp").forward(request, response);
                 } else {
-                    login_msg = "账号或密码错误";
-                    request.setAttribute("login_msg", login_msg);
+                    toast = "账号或密码错误";
+                    request.setAttribute("toast", toast);
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             }
