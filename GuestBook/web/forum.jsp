@@ -17,6 +17,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/forum.css">
     <title>Forum登录</title>
+
+    <script>
+        window.onload = function () {
+            showTime();
+        }
+        function showTime() {
+            //创建Date对象
+            let today = new Date();
+            //分别取出年、月、日、时、分、秒
+            let year = today.getFullYear();
+            let month = today.getMonth()+1;
+            let day = today.getDate();
+            let hours = today.getHours();
+            let minutes = today.getMinutes();
+            let seconds = today.getSeconds();
+            //如果是单个数，则前面补0
+            month  = month<10  ? "0"+month : month;
+            day  = day <10  ? "0"+day : day;
+            hours  = hours<10  ? "0"+hours : hours;
+            minutes = minutes<10 ? "0"+minutes : minutes;
+            seconds = seconds<10 ? "0"+seconds : seconds;
+
+            //构建要输出的字符串
+            let str = year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+
+            //获取id=nowtime的对象
+            let obj = document.getElementById("nowTime");
+            //将str的内容写入到id=result的<div>中去
+            obj.innerHTML = str;
+            //延时器
+            window.setTimeout("showTime()",1000);
+        }
+    </script>
 </head>
 
 <body class="bg-light">
@@ -34,9 +67,9 @@
             <div class="card">
                 <img class="card-img-top mx-auto d-block mt-3" src="./img/avatar.png" alt="avatar" style="width: 48px !important;">
                 <div class="card-body text-center">
-                    <h5 class="card-title mt-n2">admin</h5>
+                    <h5 class="card-title mt-n2">${sessionScope.username}</h5>
                     <p class="card-text mt-n1 mb-n2">
-                        <small>2019-7-3 13:15</small>
+                        <small id="nowTime"></small>
                     </p>
                 </div>
                 <%--<div class="card-footer text-center">--%>
@@ -52,14 +85,14 @@
         </div>
         <div class="col-9">
             <h4>发表留言</h4>
-            <form action="ForumServlet">
+            <form action="ForumServlet" method="post">
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
-                    <input type="email" class="form-control" id="guestBook_title" placeholder="请输入标题">
+                    <input type="text" name="guestBook_title" class="form-control" id="guestBook_title" placeholder="请输入标题">
                 </div>
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
-                    <textarea class="form-control" id="guestBook_content" rows="10" placeholder="请输入留言。。。"></textarea>
+                    <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10" placeholder="请输入留言。。。"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block mb-2">发 表</button>
             </form>
