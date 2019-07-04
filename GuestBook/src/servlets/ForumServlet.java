@@ -1,5 +1,8 @@
 package servlets;
 
+import beans.GuestBook;
+import dao.GuestBook_dao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,20 @@ public class ForumServlet extends HttpServlet {
         String guestBook_title = request.getParameter("guestBook_title");
         String guestBook_content = request.getParameter("guestBook_content");
         String username = (String) request.getSession().getAttribute("username");
+
+        GuestBook guestBook = new GuestBook();
+        guestBook.setGuestbook_title(guestBook_title);
+        guestBook.setGuestbook_content(guestBook_content);
+        guestBook.setUser_name(username);
+
+        GuestBook_dao guestBook_dao = new GuestBook_dao();
+        try {
+            guestBook_dao.addGuestBook(guestBook);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

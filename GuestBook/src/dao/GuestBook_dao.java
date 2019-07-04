@@ -12,11 +12,12 @@ public class GuestBook_dao {
         PreparedStatement ps = null;
         try {
             conn = JdbcUtil.getConnection();
-            String addGuestBookSql = "insert into guestbook ";
+            String addGuestBookSql = "insert into guestbook values(guestbook_id_seq.nextval, ?, ?, ?, SYSDATE)";
             ps = conn.prepareStatement(addGuestBookSql);
-            ps.setString(1, guestBook.getGuestbook_id());
+            ps.setString(1, guestBook.getUser_name());
+            ps.setString(2, guestBook.getGuestbook_title());
+            ps.setString(3, guestBook.getGuestbook_content());
             ps.executeUpdate();
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -30,11 +30,17 @@ public class LoginServlet extends HttpServlet {
 
         session.setAttribute("username", username);
 
+        String login_msg;
+
         try {
             if (username.equals("")) {
-                request.getRequestDispatcher("error.jsp").forward(request, response);
+                login_msg = "用户名不能为空";
+                request.setAttribute("login_msg", login_msg);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else if (userpwd.equals("")) {
-                request.getRequestDispatcher("error.jsp").forward(request, response);
+                login_msg = "密码不能为空";
+                request.setAttribute("login_msg", login_msg);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 conn = JdbcUtil.getConnection();
                 String checkLoginSql = "select user_name from user_info where user_name = ? and user_pwd = ?";
@@ -43,9 +49,13 @@ public class LoginServlet extends HttpServlet {
                 ps.setString(2, userpwd);
                 rs = ps.executeQuery();
                 if (rs.next()) {
+                    login_msg = "登录成功";
+                    request.setAttribute("login_msg", login_msg);
                     request.getRequestDispatcher("forum.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    login_msg = "账号或密码错误";
+                    request.setAttribute("login_msg", login_msg);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {

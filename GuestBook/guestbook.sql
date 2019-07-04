@@ -26,3 +26,25 @@ connect system/admin @guestbook;
 
 insert into user_info values('admin', 'admin');
 commit;
+
+select * from guestbook;
+
+select * from user_info;
+
+select * from reply;
+
+select table_name from user_tables;
+
+insert into user_info values('lexiaoyuan', 'lexiaoyuan');commit;
+
+create sequence guestbook_id_seq start with 2019070400 increment by 1;
+
+insert into guestbook values(guestbook_id_seq.nextval, 'admin', 'testTitle1', 'testContent1', SYSDATE);commit;
+
+alter session set nls_date_format = 'YYYY-MM-DD HH24:MI:SS';
+
+insert into guestbook values(guestbook_id_seq.nextval, 'lexiaoyuan', 'testTitle2', 'testContent2', SYSDATE);commit;
+
+drop sequence guestbook_id_seq;
+
+delete from guestbook;

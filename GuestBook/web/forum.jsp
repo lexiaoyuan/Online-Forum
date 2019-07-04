@@ -42,10 +42,8 @@
             //构建要输出的字符串
             let str = year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
 
-            //获取id=nowtime的对象
-            let obj = document.getElementById("nowTime");
-            //将str的内容写入到id=result的<div>中去
-            obj.innerHTML = str;
+            //获取id=nowTime的对象
+            document.getElementById("nowTime").innerHTML = str;
             //延时器
             window.setTimeout("showTime()",1000);
         }
