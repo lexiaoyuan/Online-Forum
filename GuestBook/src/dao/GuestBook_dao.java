@@ -5,6 +5,9 @@ import dbc.JdbcUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuestBook_dao {
     public GuestBook addGuestBook (GuestBook guestBook) throws Exception {
@@ -26,4 +29,29 @@ public class GuestBook_dao {
         return guestBook;
     }
 
+    public List<GuestBook> lookGuestBook (GuestBook guestBook) throws Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<GuestBook> guestBookList=new ArrayList<GuestBook>();
+        try {
+            conn = JdbcUtil.getConnection();
+            String lookGuestBookSql = "select * from guestbook";
+            ps = conn.prepareStatement(lookGuestBookSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                guestBook.setUser_name(rs.getString(2));
+                guestBook.setGuestbook_title(rs.getString(3));
+                guestBook.setGuestbook_content(rs.getString(4));
+                guestBook.setGuestbook_date(rs.getString(5));
+                guestBookList.add(guestBook);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.free(rs, ps, conn);
+        }
+        return guestBookList;
+
+    }
 }
