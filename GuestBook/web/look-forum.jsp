@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,13 +88,19 @@
             </div>
             <div class="list-group mt-3">
                 <a href="forum.jsp" class="list-group-item list-group-item-action">发表</a>
-                <a href="look-forum.jsp" class="list-group-item list-group-item-action active">查看</a>
+                <a href="LookForumServlet" class="list-group-item list-group-item-action active">查看</a>
                 <a href="#" class="list-group-item list-group-item-action">我的回复</a>
                 <a href="#" class="list-group-item list-group-item-action">我的留言</a>
             </div>
         </div>
         <div class="col-9">
-
+            <c:forEach var = "guestBookList" items="${guestBookList}">
+                <p>姓名：${guestBookList.user_name}</p>
+                <p>标题：${guestBookList.guestbook_title}</p>
+                <p>内容：${guestBookList.guestbook_content}</p>
+                <p>时间：${guestBookList.guestbook_date}</p>
+                <hr>
+            </c:forEach>
         </div>
     </div>
 </div>

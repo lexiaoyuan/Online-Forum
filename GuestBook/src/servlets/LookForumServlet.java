@@ -21,7 +21,7 @@ public class LookForumServlet extends HttpServlet {
             List<GuestBook> guestBookList;
             guestBookList = guestBook_dao.lookGuestBook(guestBook);
             request.setAttribute("guestBookList", guestBookList);
-            request.getRequestDispatcher("look-fourm.jsp").forward(request, response);
+            request.getRequestDispatcher("look-forum.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -44,7 +44,7 @@ public class ForumServlet extends HttpServlet {
                 guestBook_dao.addGuestBook(guestBook);
                 toast = "发表成功";
                 request.setAttribute("toast", toast);
-                request.getRequestDispatcher("forum.jsp").forward(request, response);
+                request.getRequestDispatcher("look-forum.jsp").forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }

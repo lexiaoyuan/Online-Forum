@@ -40,11 +40,12 @@ public class GuestBook_dao {
             ps = conn.prepareStatement(lookGuestBookSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                guestBook.setUser_name(rs.getString(2));
-                guestBook.setGuestbook_title(rs.getString(3));
-                guestBook.setGuestbook_content(rs.getString(4));
-                guestBook.setGuestbook_date(rs.getString(5));
-                guestBookList.add(guestBook);
+                GuestBook guestBook1 = new GuestBook();
+                guestBook1.setUser_name(rs.getString(2));
+                guestBook1.setGuestbook_title(rs.getString(3));
+                guestBook1.setGuestbook_content(rs.getString(4));
+                guestBook1.setGuestbook_date(rs.getString(5));
+                guestBookList.add(guestBook1);
             }
         } catch (Exception e) {
             e.printStackTrace();
