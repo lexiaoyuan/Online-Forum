@@ -48,3 +48,5 @@ insert into guestbook values(guestbook_id_seq.nextval, 'lexiaoyuan', 'testTitle2
 drop sequence guestbook_id_seq;
 
 delete from guestbook;
+
+delete from guestbook where guestbook_id=2019070432;

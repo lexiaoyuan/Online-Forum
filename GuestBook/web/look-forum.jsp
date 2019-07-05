@@ -95,11 +95,24 @@
         </div>
         <div class="col-9">
             <ul class="list-unstyled">
-                <c:forEach var = "guestBookList" items="${guestBookList}">
+                <c:forEach var="guestBookList" items="${guestBookList}">
                     <li class="media mb-4 bg-white p-3 shadow rounded">
                         <img class="mr-3" src="./img/github.png" alt="头像">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">${guestBookList.guestbook_title}</h5>
+                            <div class="row justify-content-between">
+                                <div class="col">
+                                    <h5 class="mt-0 mb-1">${guestBookList.guestbook_title}</h5>
+                                </div>
+                                <div class="col">
+                                    <small class="float-right">
+                                        <c:if test="${guestBookList.user_name == sessionScope.username}">
+                                            <a href="#">修改</a>
+                                            <a href="DeleteForumServlet?guestbook_id=${guestBookList.guestbook_id}" class="ml-2">删除</a>
+                                        </c:if>
+                                    </small>
+                                </div>
+                            </div>
+
                             <p>
                                 <small>${guestBookList.user_name}</small>
                                 <small class="float-right">${guestBookList.guestbook_date}</small>
@@ -116,11 +129,8 @@
                                         <button type="button" class="btn btn-primary btn-sm">回复</button>
                                     </div>
                                 </div>
-
-
                             </form>
                         </div>
-
                     </li>
                 </c:forEach>
             </ul>

@@ -59,6 +59,9 @@ public class LoginServlet extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+            toast = "登录失败";
+            request.setAttribute("toast", toast);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             e.printStackTrace();
         }
 

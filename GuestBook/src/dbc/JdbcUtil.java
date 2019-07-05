@@ -30,21 +30,19 @@ public class JdbcUtil {
     }
 
     //设计释放结果集、语句和连接的方法free()
-    public static void free(ResultSet rs, Statement st, Connection conn) {
+    public static void free(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
             if (rs != null) {
                 rs.close();
             }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }

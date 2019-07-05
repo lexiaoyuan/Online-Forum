@@ -35,6 +35,7 @@ public class ForumServlet extends HttpServlet {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             GuestBook guestBook = new GuestBook();
+
             guestBook.setGuestbook_title(guestBook_title);
             guestBook.setGuestbook_content(guestBook_content);
             guestBook.setUser_name(username);
@@ -46,6 +47,9 @@ public class ForumServlet extends HttpServlet {
                 request.setAttribute("toast", toast);
                 request.getRequestDispatcher("look-forum.jsp").forward(request, response);
             } catch (Exception e) {
+                toast = "发表失败";
+                request.setAttribute("toast", toast);
+                request.getRequestDispatcher("look-forum.jsp").forward(request, response);
                 e.printStackTrace();
             }
         }

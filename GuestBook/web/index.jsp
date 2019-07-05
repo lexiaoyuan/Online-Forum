@@ -22,11 +22,19 @@
     window.onload = function () {
         let toast = "${toast}";
         if (!(toast === "")) {
-            layer.msg('${toast}', {
-                icon: 2,
-                time: 1000,
-                offset: 't'
-            });
+            if (toast === "注册成功") {
+                layer.msg('${toast}', {
+                    icon: 1,
+                    time: 1000,
+                    offset: 't'
+                });
+            } else {
+                layer.msg('${toast}', {
+                    icon: 2,
+                    time: 1000,
+                    offset: 't'
+                });
+            }
         }
     }
   </script>
@@ -66,8 +74,8 @@
   <div class="row mt-3 row-custom">
     <div class="col text-center">
       <div class="border py-3 rounded">
-        <span>New to Forum?</span>
-        <a href="#">Create an account.</a>
+        <span>新用户?</span>
+        <a href="register.jsp">创建一个账号.</a>
       </div>
     </div>
   </div>

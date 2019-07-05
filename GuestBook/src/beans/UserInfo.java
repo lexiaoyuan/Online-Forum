@@ -2,6 +2,7 @@ package beans;
 
 public class UserInfo {
     private String username;
+    private String userpwd;
 
     public String getUsername() {
         return username;
@@ -11,5 +12,11 @@ public class UserInfo {
         this.username = username;
     }
 
+    public String getUserpwd() {
+        return userpwd;
+    }
 
+    public void setUserpwd(String userpwd) {
+        this.userpwd = userpwd;
+    }
 }
