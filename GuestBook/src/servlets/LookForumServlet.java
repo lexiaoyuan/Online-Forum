@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(name = "LookForumServlet")
@@ -20,6 +21,7 @@ public class LookForumServlet extends HttpServlet {
         try {
             List<GuestBook> guestBookList;
             guestBookList = guestBook_dao.lookGuestBook(guestBook);
+            Collections.reverse(guestBookList);
             request.setAttribute("guestBookList", guestBookList);
             request.getRequestDispatcher("look-forum.jsp").forward(request, response);
         } catch (Exception e) {

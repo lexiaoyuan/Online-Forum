@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
     <!-- Required meta tags -->
@@ -94,13 +94,36 @@
             </div>
         </div>
         <div class="col-9">
-            <c:forEach var = "guestBookList" items="${guestBookList}">
-                <p>姓名：${guestBookList.user_name}</p>
-                <p>标题：${guestBookList.guestbook_title}</p>
-                <p>内容：${guestBookList.guestbook_content}</p>
-                <p>时间：${guestBookList.guestbook_date}</p>
-                <hr>
-            </c:forEach>
+            <ul class="list-unstyled">
+                <c:forEach var = "guestBookList" items="${guestBookList}">
+                    <li class="media mb-4 bg-white p-3 shadow rounded">
+                        <img class="mr-3" src="./img/github.png" alt="头像">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">${guestBookList.guestbook_title}</h5>
+                            <p>
+                                <small>${guestBookList.user_name}</small>
+                                <small class="float-right">${guestBookList.guestbook_date}</small>
+                            </p>
+                            <p>${guestBookList.guestbook_content}</p>
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-sm" placeholder="回复...">
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-primary btn-sm">回复</button>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
 </div>
