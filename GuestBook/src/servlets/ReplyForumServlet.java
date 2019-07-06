@@ -39,7 +39,6 @@ public class ReplyForumServlet extends HttpServlet {
             Reply reply = new Reply();
 
             try {
-
                 guestBook.setGuestbook_id(guestBookId);
                 List<GuestBook> guestBookList = new ArrayList<>();
                 guestBookList = searchGuestBook_dao.searchById(guestBook);
@@ -54,6 +53,11 @@ public class ReplyForumServlet extends HttpServlet {
                     reply_dao.addReply(reply);
                     toast = "回复成功";
                     request.setAttribute("toast", toast);
+
+                    List<Reply> replyList;
+                    replyList = reply_dao.showReply(reply);
+                    request.setAttribute("replyList", replyList);
+
                     request.getRequestDispatcher("LookForumServlet").forward(request, response);
                 } catch (Exception e) {
                     toast = "回复失败";

@@ -27,7 +27,7 @@ public class DeleteForumServlet extends HttpServlet {
             guestBook_dao.deleteGuestBook(guestBook);
             toast = "删除成功";
             request.setAttribute("toast", toast);
-            request.getRequestDispatcher("look-forum.jsp").forward(request, response);
+            request.getRequestDispatcher("LookForumServlet").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -38,7 +38,7 @@ public class GuestBook_dao {
         List<GuestBook> guestBookList=new ArrayList<GuestBook>();
         try {
             conn = JdbcUtil.getConnection();
-            String lookGuestBookSql = "select * from guestbook";
+            String lookGuestBookSql = "select * from guestbook order by guestbook_id";
             ps = conn.prepareStatement(lookGuestBookSql);
             rs = ps.executeQuery();
             while (rs.next()) {

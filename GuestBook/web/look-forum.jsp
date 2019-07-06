@@ -107,7 +107,8 @@
                                     <small class="float-right">
                                         <c:if test="${guestBookList.user_name == sessionScope.username}">
                                             <a href="ToModifyForumServlet?guestbook_id=${guestBookList.guestbook_id}">修改</a>
-                                            <a href="DeleteForumServlet?guestbook_id=${guestBookList.guestbook_id}" class="ml-2">删除</a>
+                                            <a href="DeleteForumServlet?guestbook_id=${guestBookList.guestbook_id}"
+                                               class="ml-2">删除</a>
                                         </c:if>
                                     </small>
                                 </div>
@@ -118,11 +119,31 @@
                                 <small class="float-right">${guestBookList.guestbook_date}</small>
                             </p>
                             <p>${guestBookList.guestbook_content}</p>
+
+                            <%--回复--%>
+                            <c:forEach var="replyList" items="${replyList}">
+                                <c:if test="${guestBookList.guestbook_id == replyList.guestbook_id}">
+                                    <div class="border-top border-light py-1">
+                                        <p class="mb-n1">
+                                            <small class="text-primary">${replyList.host_user_name}</small>
+                                            <small>回复</small>
+                                            <small class="text-primary">${replyList.guest_user_name} :</small>
+                                            <small class="float-right">${replyList.reply_date}</small>
+                                        </p>
+                                        <small>${replyList.reply_content}</small>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+
+
+
                             <form method="post" action="ReplyForumServlet?guestbook_id=${guestBookList.guestbook_id}">
-                                <div class="form-row">
+
+                                <div class="form-row mt-2">
                                     <div class="col-10">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-sm" name="replyText" placeholder="回复..." maxlength="100" required>
+                                            <input type="text" class="form-control form-control-sm" name="replyText"
+                                                   placeholder="回复..." maxlength="100" required>
                                         </div>
                                     </div>
                                     <div class="col-2">
