@@ -31,6 +31,10 @@
         <servlet-name>ToModifyForumServlet</servlet-name>
         <servlet-class>servlets.ToModifyForumServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReplyForumServlet</servlet-name>
+        <servlet-class>servlets.ReplyForumServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -59,5 +63,9 @@
     <servlet-mapping>
         <servlet-name>ToModifyForumServlet</servlet-name>
         <url-pattern>/ToModifyForumServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReplyForumServlet</servlet-name>
+        <url-pattern>/ReplyForumServlet</url-pattern>
     </servlet-mapping>
 </web-app>

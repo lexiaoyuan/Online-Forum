@@ -12,8 +12,9 @@ guestbook_date date not null);
 create table reply (
 reply_id number(10, 0) primary key,
 guestbook_id number(10, 0) not null references guestbook(guestbook_id),
-user_name varchar2(20) not null references user_info(user_name),
-reply_content varchar2(2000) not null,
+host_user_name varchar2(20) not null references user_info(user_name),
+guest_user_name varchar2(20) not null references user_info(user_name),
+reply_content varchar2(100) not null,
 reply_date date not null);
 
 alter table user_info modify user_pwd not null;
@@ -52,3 +53,7 @@ delete from guestbook;
 delete from guestbook where guestbook_id=2019070432;
 
 alter table reply modify reply_content varchar2(100);
+
+drop table reply cascade constraints;
+
+create sequence reply_id_seq start with 2019070600 increment by 1;

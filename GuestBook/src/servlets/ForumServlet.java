@@ -49,7 +49,7 @@ public class ForumServlet extends HttpServlet {
             } catch (Exception e) {
                 toast = "发表失败";
                 request.setAttribute("toast", toast);
-                request.getRequestDispatcher("look-forum.jsp").forward(request, response);
+                request.getRequestDispatcher("LookForumServlet").forward(request, response);
                 e.printStackTrace();
             }
         }

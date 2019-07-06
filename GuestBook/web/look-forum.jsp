@@ -118,15 +118,15 @@
                                 <small class="float-right">${guestBookList.guestbook_date}</small>
                             </p>
                             <p>${guestBookList.guestbook_content}</p>
-                            <form>
+                            <form method="post" action="ReplyForumServlet?guestbook_id=${guestBookList.guestbook_id}">
                                 <div class="form-row">
                                     <div class="col-10">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-sm" placeholder="回复..." maxlength="100" required>
+                                            <input type="text" class="form-control form-control-sm" name="replyText" placeholder="回复..." maxlength="100" required>
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn btn-primary btn-sm">回复</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">回复</button>
                                     </div>
                                 </div>
                             </form>
