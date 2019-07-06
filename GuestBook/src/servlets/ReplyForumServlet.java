@@ -54,10 +54,6 @@ public class ReplyForumServlet extends HttpServlet {
                     toast = "回复成功";
                     request.setAttribute("toast", toast);
 
-                    List<Reply> replyList;
-                    replyList = reply_dao.showReply(reply);
-                    request.setAttribute("replyList", replyList);
-
                     request.getRequestDispatcher("LookForumServlet").forward(request, response);
                 } catch (Exception e) {
                     toast = "回复失败";

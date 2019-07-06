@@ -31,7 +31,7 @@ public class Reply_dao {
         return reply;
     }
 
-    public List<Reply> showReply (Reply reply) throws Exception {
+    public List<Reply> showReply () throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

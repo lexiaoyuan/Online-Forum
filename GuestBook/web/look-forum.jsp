@@ -120,7 +120,7 @@
                             </p>
                             <p>${guestBookList.guestbook_content}</p>
 
-                            <%--回复--%>
+                                <%--回复--%>
                             <c:forEach var="replyList" items="${replyList}">
                                 <c:if test="${guestBookList.guestbook_id == replyList.guestbook_id}">
                                     <div class="border-top border-light py-1">
@@ -134,7 +134,6 @@
                                     </div>
                                 </c:if>
                             </c:forEach>
-
 
 
                             <form method="post" action="ReplyForumServlet?guestbook_id=${guestBookList.guestbook_id}">
