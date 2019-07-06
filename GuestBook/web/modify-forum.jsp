@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 徐仕成
-  Date: 2019/6/30
-  Time: 10:43
+  Date: 2019/7/6
+  Time: 11:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/forum.css">
-    <title>发表留言</title>
+    <title>修改留言</title>
 
     <script>
         window.onload = function () {
@@ -87,26 +87,27 @@
                 <%--</div>--%>
             </div>
             <div class="list-group mt-3">
-                <a href="forum.jsp" class="list-group-item list-group-item-action active">发表</a>
+                <a href="forum.jsp" class="list-group-item list-group-item-action">发表</a>
                 <a href="look-forum.jsp" class="list-group-item list-group-item-action">查看</a>
+                <a href="modify-forum.jsp" class="list-group-item list-group-item-action active">修改</a>
                 <a href="#" class="list-group-item list-group-item-action">我的回复</a>
                 <a href="#" class="list-group-item list-group-item-action">我的留言</a>
             </div>
         </div>
         <div class="col-9">
-            <h4>发表留言</h4>
-            <form action="ForumServlet" method="post">
+            <h4>修改留言</h4>
+            <form action="#" method="post">
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
                     <input type="text" name="guestBook_title" class="form-control" id="guestBook_title"
-                           placeholder="请输入标题" maxlength="100" required>
+                           value="${sessionScope.guestbook_title}" placeholder="请输入标题" required>
                 </div>
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
                     <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10"
-                              placeholder="请输入留言。。。" maxlength="2000" required></textarea>
+                              value="${sessionScope.guestbook_content}" placeholder="请输入留言。。。" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mb-2">发 表</button>
+                <button type="submit" class="btn btn-primary btn-block mb-2">修 改</button>
             </form>
         </div>
     </div>
@@ -126,3 +127,4 @@
 </body>
 
 </html>
+

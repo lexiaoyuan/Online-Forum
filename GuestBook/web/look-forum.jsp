@@ -106,7 +106,7 @@
                                 <div class="col">
                                     <small class="float-right">
                                         <c:if test="${guestBookList.user_name == sessionScope.username}">
-                                            <a href="#">修改</a>
+                                            <a href="ToModifyForumServlet?guestbook_id=${guestBookList.guestbook_id}">修改</a>
                                             <a href="DeleteForumServlet?guestbook_id=${guestBookList.guestbook_id}" class="ml-2">删除</a>
                                         </c:if>
                                     </small>
@@ -122,7 +122,7 @@
                                 <div class="form-row">
                                     <div class="col-10">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-sm" placeholder="回复...">
+                                            <input type="text" class="form-control form-control-sm" placeholder="回复..." maxlength="100" required>
                                         </div>
                                     </div>
                                     <div class="col-2">

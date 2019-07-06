@@ -58,13 +58,13 @@
         <form method="post" action="LoginServlet">
           <div class="form-group">
             <label for="usernameInput" class="text-dark">用户名</label>
-            <input type="text" class="form-control form-control-sm" id="usernameInput" name="username" placeholder="请输入用户名" required>
+            <input type="text" class="form-control form-control-sm" id="usernameInput" name="username" placeholder="请输入用户名" maxlength="20" required>
           </div>
           <div class="form-group">
             <label for="userpwdInput" class="text-dark d-block">密码
               <a class="text-primary float-right">忘记密码?</a>
             </label>
-            <input type="password" class="form-control form-control-sm" id="userpwdInput" name="userpwd" placeholder="请输入密码" required autocomplete="on">
+            <input type="password" class="form-control form-control-sm" id="userpwdInput" name="userpwd" placeholder="请输入密码" maxlength="20" required autocomplete="on">
           </div>
           <button type="submit" class="btn rounded-sm btn-primary-custom btn-block btn-sm text-white mt-4">登 录</button>
         </form>

@@ -62,7 +62,6 @@ public class GuestBook_dao {
     public void deleteGuestBook(GuestBook guestBook) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
 
         try {
             conn = JdbcUtil.getConnection();
@@ -73,7 +72,27 @@ public class GuestBook_dao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JdbcUtil.free(rs, ps, conn);
+            JdbcUtil.free(null, ps, conn);
+        }
+    }
+
+    //修改留言
+    public void modifyGuestBook(GuestBook guestBook) throws Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = JdbcUtil.getConnection();
+            String modifyGuestBookSql = "update guestbook set guestbook_title=?, guestbook_content=? where guestbook_id=?";
+            ps = conn.prepareStatement(modifyGuestBookSql);
+            ps.setString(1, guestBook.getGuestbook_title());
+            ps.setString(2, guestBook.getGuestbook_content());
+            ps.setString(3, guestBook.getGuestbook_id());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.free(null, ps, conn);
         }
     }
 }

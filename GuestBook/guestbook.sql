@@ -50,3 +50,5 @@ drop sequence guestbook_id_seq;
 delete from guestbook;
 
 delete from guestbook where guestbook_id=2019070432;
+
+alter table reply modify reply_content varchar2(100);

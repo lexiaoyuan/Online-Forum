@@ -50,17 +50,17 @@
                 <form method="post" action="RegisterServlet">
                     <div class="form-group">
                         <label for="usernameInput" class="text-dark">用户名</label>
-                        <input type="text" class="form-control form-control-sm" id="usernameInput" name="username" placeholder="请输入用户名" required>
+                        <input type="text" class="form-control form-control-sm" id="usernameInput" name="username" placeholder="请输入用户名" maxlength="20" required>
                     </div>
                     <div class="form-group">
                         <label for="userpwdInput" class="text-dark d-block">密码</label>
-                        <input type="password" class="form-control form-control-sm" id="userpwdInput" name="userpwd" placeholder="请输入密码" required>
+                        <input type="password" class="form-control form-control-sm" id="userpwdInput" name="userpwd" placeholder="请输入密码" maxlength="20" required>
                     </div>
                     <div class="form-group">
                         <label for="userpwdConfirmInput" class="text-dark d-block">确认密码</label>
-                        <input type="password" class="form-control form-control-sm" id="userpwdConfirmInput" name="userpwdConfirm" placeholder="请确认密码" required>
+                        <input type="password" class="form-control form-control-sm" id="userpwdConfirmInput" name="userpwdConfirm" placeholder="请确认密码" maxlength="20" required>
                     </div>
-                    <button type="submit" class="btn rounded-sm btn-primary-custom btn-block btn-sm text-white mt-4">注册</button>
+                    <button type="submit" class="btn rounded-sm btn-primary-custom btn-block btn-sm text-white mt-4">注 册</button>
                 </form>
             </div>
         </div>

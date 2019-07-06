@@ -23,6 +23,14 @@
         <servlet-name>DeleteForumServlet</servlet-name>
         <servlet-class>servlets.DeleteForumServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModifyForumServlet</servlet-name>
+        <servlet-class>servlets.ModifyForumServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ToModifyForumServlet</servlet-name>
+        <servlet-class>servlets.ToModifyForumServlet</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -43,5 +51,13 @@
     <servlet-mapping>
         <servlet-name>DeleteForumServlet</servlet-name>
         <url-pattern>/DeleteForumServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifyForumServlet</servlet-name>
+        <url-pattern>/ModifyForumServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToModifyForumServlet</servlet-name>
+        <url-pattern>/ToModifyForumServlet</url-pattern>
     </servlet-mapping>
 </web-app>
