@@ -101,12 +101,12 @@
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
                     <input type="text" name="guestBook_title" class="form-control" id="guestBook_title"
-                           value="${sessionScope.guestBook_title}" placeholder="请输入标题" required>
+                           value="${sessionScope.guestBook_title}" placeholder="请输入标题" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
                     <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10"
-                             placeholder="请输入留言。。。" required>${sessionScope.guestBook_content}
+                             placeholder="请输入留言。。。" maxlength="2000" required>${sessionScope.guestBook_content}
                     </textarea>
                 </div>
 
