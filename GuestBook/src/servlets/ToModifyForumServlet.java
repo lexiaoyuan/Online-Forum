@@ -1,5 +1,8 @@
 package servlets;
 
+import beans.GuestBook;
+import dao.SearchGuestBook_dao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ToModifyForumServlet")
 public class ToModifyForumServlet extends HttpServlet {
@@ -14,16 +18,24 @@ public class ToModifyForumServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String guestbook_id = request.getParameter("guestbook_id");
-        String user_name = "";
-        String guestbook_title = "";
-        String guestbook_content = "";
 
-        HttpSession session = request.getSession();
-        session.setAttribute("username", user_name);
-        session.setAttribute("guestbook_title", guestbook_title);
-        session.setAttribute("guestbook_content", guestbook_content);
+        GuestBook guestBook = new GuestBook();
+        SearchGuestBook_dao searchGuestBook_dao = new SearchGuestBook_dao();
 
-        request.getRequestDispatcher("modify-forum.jsp").forward(request, response);
+
+        try {
+            guestBook.setGuestbook_id(guestbook_id);
+            List<GuestBook> guestBookList;
+            guestBookList = searchGuestBook_dao.searchById(guestBook);
+            HttpSession session = request.getSession();
+            session.setAttribute("username", guestBookList.get(0).getUser_name());
+            session.setAttribute("guestbook_title", guestBookList.get(0).getGuestbook_title());
+            session.setAttribute("guestbook_content", guestBookList.get(0).getGuestbook_content());
+            request.getRequestDispatcher("modify-forum.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

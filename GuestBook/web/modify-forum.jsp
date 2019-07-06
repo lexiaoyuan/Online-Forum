@@ -97,6 +97,7 @@
         <div class="col-9">
             <h4>修改留言</h4>
             <form action="#" method="post">
+
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
                     <input type="text" name="guestBook_title" class="form-control" id="guestBook_title"
@@ -105,8 +106,10 @@
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
                     <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10"
-                              value="${sessionScope.guestbook_content}" placeholder="请输入留言。。。" required></textarea>
+                             placeholder="请输入留言。。。" required>${sessionScope.guestbook_content}
+                    </textarea>
                 </div>
+
                 <button type="submit" class="btn btn-primary btn-block mb-2">修 改</button>
             </form>
         </div>
