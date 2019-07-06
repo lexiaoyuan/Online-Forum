@@ -88,7 +88,7 @@
             </div>
             <div class="list-group mt-3">
                 <a href="forum.jsp" class="list-group-item list-group-item-action active">发表</a>
-                <a href="look-forum.jsp" class="list-group-item list-group-item-action">查看</a>
+                <a href="LookForumServlet" class="list-group-item list-group-item-action">查看</a>
                 <a href="#" class="list-group-item list-group-item-action">我的回复</a>
                 <a href="#" class="list-group-item list-group-item-action">我的留言</a>
             </div>

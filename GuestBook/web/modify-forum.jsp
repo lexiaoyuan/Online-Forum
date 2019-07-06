@@ -88,7 +88,7 @@
             </div>
             <div class="list-group mt-3">
                 <a href="forum.jsp" class="list-group-item list-group-item-action">发表</a>
-                <a href="look-forum.jsp" class="list-group-item list-group-item-action">查看</a>
+                <a href="LookForumServlet" class="list-group-item list-group-item-action">查看</a>
                 <a href="modify-forum.jsp" class="list-group-item list-group-item-action active">修改</a>
                 <a href="#" class="list-group-item list-group-item-action">我的回复</a>
                 <a href="#" class="list-group-item list-group-item-action">我的留言</a>
@@ -96,17 +96,17 @@
         </div>
         <div class="col-9">
             <h4>修改留言</h4>
-            <form action="#" method="post">
+            <form action="ModifyForumServlet" method="post">
 
                 <div class="form-group mt-3">
                     <label for="guestBook_title">标题</label>
                     <input type="text" name="guestBook_title" class="form-control" id="guestBook_title"
-                           value="${sessionScope.guestbook_title}" placeholder="请输入标题" required>
+                           value="${sessionScope.guestBook_title}" placeholder="请输入标题" required>
                 </div>
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
                     <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10"
-                             placeholder="请输入留言。。。" required>${sessionScope.guestbook_content}
+                             placeholder="请输入留言。。。" required>${sessionScope.guestBook_content}
                     </textarea>
                 </div>
 

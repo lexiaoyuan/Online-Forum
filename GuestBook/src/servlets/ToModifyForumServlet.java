@@ -27,10 +27,13 @@ public class ToModifyForumServlet extends HttpServlet {
             guestBook.setGuestbook_id(guestbook_id);
             List<GuestBook> guestBookList;
             guestBookList = searchGuestBook_dao.searchById(guestBook);
+
             HttpSession session = request.getSession();
+            session.setAttribute("guestBook_id", guestbook_id);
             session.setAttribute("username", guestBookList.get(0).getUser_name());
-            session.setAttribute("guestbook_title", guestBookList.get(0).getGuestbook_title());
-            session.setAttribute("guestbook_content", guestBookList.get(0).getGuestbook_content());
+            session.setAttribute("guestBook_title", guestBookList.get(0).getGuestbook_title());
+            session.setAttribute("guestBook_content", guestBookList.get(0).getGuestbook_content());
+
             request.getRequestDispatcher("modify-forum.jsp").forward(request, response);
 
         } catch (Exception e) {
