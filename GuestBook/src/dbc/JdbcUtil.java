@@ -10,7 +10,9 @@ public class JdbcUtil {
     private static String password;
     private static Properties properties = new Properties();
 
-    private JdbcUtil() {}
+    private JdbcUtil() {
+    }
+
     //设计该工具类的静态初始化容器中的代码，该代码在装入类时执行，且只执行一次
     static {
         try {
@@ -24,6 +26,7 @@ public class JdbcUtil {
             throw new ExceptionInInitializerError(e);
         }
     }
+
     //设计获得连接对象的方法getConnection()
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);

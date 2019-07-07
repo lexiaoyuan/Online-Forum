@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
         Register_dao register_dao = new Register_dao();
 
         try {
-            if (username =="") {
+            if (username == "") {
                 toast = "用户名不能为空";
                 request.setAttribute("toast", toast);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
@@ -45,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
                 toast = "密码不能为空";
                 request.setAttribute("toast", toast);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            } else if (userpwdConfirm =="" ) {
+            } else if (userpwdConfirm == "") {
                 toast = "确认密码不能为空";
                 request.setAttribute("toast", toast);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
@@ -53,8 +53,7 @@ public class RegisterServlet extends HttpServlet {
                 toast = "两次密码不同";
                 request.setAttribute("toast", toast);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            }
-            else {
+            } else {
                 conn = JdbcUtil.getConnection();
                 String checkRegisterSql = "select user_name from user_info where user_name = ?";
                 ps = conn.prepareStatement(checkRegisterSql);

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>beans.GuestBook</OriginalElement>
+  <nodes>
+    <node x="1603.9037071078437" y="640.0">servlets.LookForumServlet</node>
+    <node x="2233.4037071078437" y="437.0">dao.GuestBook_dao</node>
+    <node x="395.7053790266109" y="448.5">servlets.LoginServlet</node>
+    <node x="433.0387123599444" y="0.0">dbc.JdbcUtil</node>
+    <node x="2409.9037071078437" y="640.0">servlets.ModifyForumServlet</node>
+    <node x="123.7053790266109" y="471.5">dao.Register_dao</node>
+    <node x="1300.6135285364153" y="24.0">beans.Reply</node>
+    <node x="53.163712359944384" y="70.0">beans.UserInfo</node>
+    <node x="0.0" y="651.5">servlets.RegisterServlet</node>
+    <node x="928.486629026611" y="471.5">dao.SearchGuestBook_dao</node>
+    <node x="797.9037071078437" y="640.0">servlets.ReplyForumServlet</node>
+    <node x="2812.9037071078437" y="640.0">servlets.ForumServlet</node>
+    <node x="1300.978125" y="460.0">dao.Reply_dao</node>
+    <node x="1893.8791535364153" y="35.5">beans.GuestBook</node>
+    <node x="2006.9037071078437" y="640.0">servlets.DeleteForumServlet</node>
+    <node x="1200.9037071078437" y="640.0">servlets.ToModifyForumServlet</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="servlets.ForumServlet" target="beans.GuestBook">
+      <point x="47.875" y="-50.0" />
+      <point x="3052.2787071078437" y="620.0" />
+      <point x="3065.376978291317" y="620.0" />
+      <point x="3065.376978291317" y="247.0" />
+      <point x="2074.2229035364153" y="247.0" />
+      <point x="80.84375" y="73.0" />
+    </edge>
+    <edge source="servlets.ReplyForumServlet" target="dao.SearchGuestBook_dao">
+      <point x="23.9375" y="-50.0" />
+      <point x="1013.3412071078437" y="580.0" />
+      <point x="966.861629026611" y="580.0" />
+      <point x="-115.125" y="27.0" />
+    </edge>
+    <edge source="servlets.ReplyForumServlet" target="beans.Reply">
+      <point x="-167.5625" y="-50.0" />
+      <point x="821.8412071078437" y="620.0" />
+      <point x="789.205379026611" y="620.0" />
+      <point x="789.205379026611" y="327.0" />
+      <point x="1319.313528536415" y="327.0" />
+      <point x="-74.80000000000018" y="84.5" />
+    </edge>
+    <edge source="servlets.ReplyForumServlet" target="dao.Reply_dao">
+      <point x="167.5625" y="-50.0" />
+      <point x="1156.9662071078437" y="620.0" />
+      <point x="1379.353125" y="620.0" />
+      <point x="-26.125" y="38.5" />
+    </edge>
+    <edge source="servlets.DeleteForumServlet" target="dao.GuestBook_dao">
+      <point x="143.625" y="-50.0" />
+      <point x="2342.0287071078437" y="620.0" />
+      <point x="2379.0912071078437" y="620.0" />
+      <point x="-20.8125" y="61.5" />
+    </edge>
+    <edge source="servlets.ToModifyForumServlet" target="dao.SearchGuestBook_dao">
+      <point x="-47.875" y="-50.0" />
+      <point x="1344.5287071078437" y="590.0" />
+      <point x="1197.1116290266114" y="590.0" />
+      <point x="115.12500000000023" y="27.0" />
+    </edge>
+    <edge source="servlets.ModifyForumServlet" target="beans.GuestBook">
+      <point x="143.625" y="-50.0" />
+      <point x="2745.0287071078437" y="620.0" />
+      <point x="2748.051453081233" y="620.0" />
+      <point x="2748.051453081233" y="257.0" />
+      <point x="2061.7854035364153" y="257.0" />
+      <point x="68.40625" y="73.0" />
+    </edge>
+    <edge source="servlets.ModifyForumServlet" target="dao.GuestBook_dao">
+      <point x="-143.625" y="-50.0" />
+      <point x="2457.7787071078437" y="620.0" />
+      <point x="2420.7162071078437" y="620.0" />
+      <point x="20.8125" y="61.5" />
+    </edge>
+    <edge source="servlets.DeleteForumServlet" target="beans.GuestBook">
+      <point x="-47.875" y="-50.0" />
+      <point x="2150.5287071078437" y="580.0" />
+      <point x="2130.259375" y="580.0" />
+      <point x="2130.259375" y="407.0" />
+      <point x="2012.0354035364153" y="407.0" />
+      <point x="18.65625" y="73.0" />
+    </edge>
+    <edge source="dao.Register_dao" target="beans.UserInfo">
+      <point x="-62.75" y="-27.0" />
+      <point x="186.4553790266109" y="417.0" />
+      <point x="173.99704569327787" y="417.0" />
+      <point x="48.333333333333485" y="38.5" />
+    </edge>
+    <edge source="dao.SearchGuestBook_dao" target="dbc.JdbcUtil">
+      <point x="-102.33333333333303" y="-27.0" />
+      <point x="979.653295693278" y="317.0" />
+      <point x="648.8720456932779" y="317.0" />
+      <point x="30.833333333333485" y="108.5" />
+    </edge>
+    <edge source="servlets.ReplyForumServlet" target="beans.GuestBook">
+      <point x="-71.8125" y="-50.0" />
+      <point x="917.5912071078437" y="600.0" />
+      <point x="811.205379026611" y="600.0" />
+      <point x="811.205379026611" y="347.0" />
+      <point x="1900.0979035364153" y="347.0" />
+      <point x="-93.28125" y="73.0" />
+    </edge>
+    <edge source="dao.GuestBook_dao" target="beans.GuestBook">
+      <point x="0.0" y="-61.5" />
+      <point x="2399.9037071078437" y="287.0" />
+      <point x="2024.4729035364153" y="287.0" />
+      <point x="31.09375" y="73.0" />
+    </edge>
+    <edge source="servlets.ForumServlet" target="dao.GuestBook_dao">
+      <point x="-47.875" y="-50.0" />
+      <point x="2956.5287071078437" y="590.0" />
+      <point x="2545.5912071078437" y="590.0" />
+      <point x="145.6875" y="61.5" />
+    </edge>
+    <edge source="servlets.RegisterServlet" target="dbc.JdbcUtil">
+      <point x="153.19999999999982" y="-38.5" />
+      <point x="344.6999999999998" y="620.0" />
+      <point x="385.2053790266109" y="620.0" />
+      <point x="385.2053790266109" y="417.0" />
+      <point x="525.5387123599444" y="417.0" />
+      <point x="-92.5" y="108.5" />
+    </edge>
+    <edge source="servlets.LookForumServlet" target="beans.GuestBook">
+      <point x="54.71428571428578" y="-50.0" />
+      <point x="1850.1179928221295" y="620.0" />
+      <point x="1864.2523459383758" y="620.0" />
+      <point x="1864.2523459383758" y="417.0" />
+      <point x="1987.1604035364153" y="417.0" />
+      <point x="-6.21875" y="73.0" />
+    </edge>
+    <edge source="dao.SearchGuestBook_dao" target="beans.GuestBook">
+      <point x="102.33333333333348" y="-27.0" />
+      <point x="1184.3199623599444" y="377.0" />
+      <point x="1937.4104035364153" y="377.0" />
+      <point x="-55.96875" y="73.0" />
+    </edge>
+    <edge source="dao.Register_dao" target="dbc.JdbcUtil">
+      <point x="62.75" y="-27.0" />
+      <point x="311.9553790266109" y="407.0" />
+      <point x="463.87204569327787" y="407.0" />
+      <point x="-154.16666666666652" y="108.5" />
+    </edge>
+    <edge source="servlets.LoginServlet" target="dbc.JdbcUtil">
+      <point x="0.0" y="-50.0" />
+      <point x="-30.833333333333485" y="108.5" />
+    </edge>
+    <edge source="servlets.RegisterServlet" target="beans.UserInfo">
+      <point x="-76.59999999999991" y="-38.5" />
+      <point x="114.90000000000009" y="620.0" />
+      <point x="113.2053790266109" y="620.0" />
+      <point x="113.2053790266109" y="417.0" />
+      <point x="125.66371235994438" y="417.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="servlets.RegisterServlet" target="dao.Register_dao">
+      <point x="0.0" y="-38.5" />
+      <point x="191.5" y="620.0" />
+      <point x="186.4553790266109" y="620.0" />
+      <point x="-62.75" y="27.0" />
+    </edge>
+    <edge source="dao.Reply_dao" target="dbc.JdbcUtil">
+      <point x="-69.66666666666652" y="-38.5" />
+      <point x="1335.8114583333336" y="307.0" />
+      <point x="710.5387123599444" y="307.0" />
+      <point x="92.5" y="108.5" />
+    </edge>
+    <edge source="dao.GuestBook_dao" target="dbc.JdbcUtil">
+      <point x="-111.0" y="-61.5" />
+      <point x="2288.9037071078437" y="297.0" />
+      <point x="772.2053790266109" y="297.0" />
+      <point x="154.16666666666652" y="108.5" />
+    </edge>
+    <edge source="servlets.ToModifyForumServlet" target="beans.GuestBook">
+      <point x="47.875" y="-50.0" />
+      <point x="1440.2787071078437" y="610.0" />
+      <point x="1609.707703081233" y="610.0" />
+      <point x="1609.707703081233" y="387.0" />
+      <point x="1949.8479035364153" y="387.0" />
+      <point x="-43.53125" y="73.0" />
+    </edge>
+    <edge source="servlets.LookForumServlet" target="dao.Reply_dao">
+      <point x="-164.1428571428571" y="-50.0" />
+      <point x="1631.2608499649866" y="600.0" />
+      <point x="1431.603125" y="600.0" />
+      <point x="26.125" y="38.5" />
+    </edge>
+    <edge source="dao.Reply_dao" target="beans.Reply">
+      <point x="69.66666666666652" y="-38.5" />
+      <point x="1475.1447916666666" y="337.0" />
+      <point x="1431.5135285364154" y="337.0" />
+      <point x="37.40000000000009" y="84.5" />
+    </edge>
+    <edge source="servlets.LookForumServlet" target="beans.Reply">
+      <point x="-54.71428571428555" y="-50.0" />
+      <point x="1740.6894213935582" y="620.0" />
+      <point x="1716.4152004551825" y="620.0" />
+      <point x="1716.4152004551825" y="327.0" />
+      <point x="1468.9135285364155" y="327.0" />
+      <point x="74.80000000000018" y="84.5" />
+    </edge>
+    <edge source="servlets.LookForumServlet" target="dao.GuestBook_dao">
+      <point x="164.1428571428571" y="-50.0" />
+      <point x="1959.5465642507008" y="600.0" />
+      <point x="2295.8412071078437" y="600.0" />
+      <point x="-104.0625" y="61.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="1598.0" y="369.9999999999999" />
+  <SelectedNodes>
+    <node>dao.Register_dao</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

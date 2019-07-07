@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reply_dao {
-    public Reply addReply (Reply reply) throws Exception {
+    public Reply addReply(Reply reply) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -31,7 +31,7 @@ public class Reply_dao {
         return reply;
     }
 
-    public List<Reply> showReply () throws Exception {
+    public List<Reply> showReply() throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

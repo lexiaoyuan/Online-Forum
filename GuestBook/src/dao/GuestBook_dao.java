@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GuestBook_dao {
     //添加留言
-    public GuestBook addGuestBook (GuestBook guestBook) throws Exception {
+    public GuestBook addGuestBook(GuestBook guestBook) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -31,11 +31,11 @@ public class GuestBook_dao {
     }
 
     //查看留言
-    public List<GuestBook> lookGuestBook (GuestBook guestBook) throws Exception {
+    public List<GuestBook> lookGuestBook(GuestBook guestBook) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<GuestBook> guestBookList=new ArrayList<GuestBook>();
+        List<GuestBook> guestBookList = new ArrayList<GuestBook>();
         try {
             conn = JdbcUtil.getConnection();
             String lookGuestBookSql = "select * from guestbook order by guestbook_id";

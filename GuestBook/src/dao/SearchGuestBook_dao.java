@@ -11,11 +11,11 @@ import java.util.List;
 
 public class SearchGuestBook_dao {
     //通过guestbook_id查询留言
-    public List<GuestBook> searchById (GuestBook guestBook) throws Exception {
+    public List<GuestBook> searchById(GuestBook guestBook) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<GuestBook> guestBookList=new ArrayList<>();
+        List<GuestBook> guestBookList = new ArrayList<>();
         try {
             conn = JdbcUtil.getConnection();
             String lookGuestBookSql = "select * from guestbook where guestbook_id = ?";
