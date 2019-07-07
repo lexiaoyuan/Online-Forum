@@ -104,7 +104,7 @@
                 <div class="form-group">
                     <label for="guestBook_content">留言</label>
                     <textarea name="guestBook_content" class="form-control" id="guestBook_content" rows="10"
-                              placeholder="请输入留言。。。" maxlength="2000" required></textarea>
+                              placeholder="请输入留言……" maxlength="2000" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block mb-2">发 表</button>
             </form>
