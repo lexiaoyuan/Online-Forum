@@ -10,22 +10,22 @@
 #### 2.1数据库概念结构设计
 > 通过对网上论坛中数据及数据处理过程的分析，抽象出用户信息（user_info）、留言信息（guestbook）、回复信息（reply）3个实体，ER图如图2-1所示。
 
-![image](./img/er.png)
+![image](./img/ER.png)
 图2-1 网上论坛ER图
 #### 2.2数据库逻辑结构设计
 > 根据网上论坛ER图，设计出该系统的9个关系表，分别为user_info（用户信息）、guestbook（留言信息）、reply（回复信息）。表结构及其约束情况见表2-2至表2-4。
 
 - 表2-2 user_info表结构及其约束
 
-|字段名|数据类型|长度|约束|说明|
-|---|---|---|---|---|---|
+| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
+| --- | --- | --- | --- | --- | --- |
 |user_name|varchar2|20|primary key|用户名|
 |user_pwd|varchar2|20|not null|	用户密码|
 
 - 表2-3 guestbook表结构及其约束
 
-|字段名|数据类型|长度|约束|说明|
-|---|---|---|---|---|---|
+| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
+| --- | --- | --- | --- | --- | --- |
 |guestbook_id|number|10|primary key|留言的id|
 |user_name|varchar2|20|foreign key|用户名|
 |guestbook_title|varchar2|100|not null|留言的标题|
@@ -34,8 +34,8 @@
 
 - 表2-4 reply表结构及其约束
 
-|字段名|数据类型|长度|约束|说明|
-|---|---|---|---|---|---|
+| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
+| --- | --- | --- | --- | --- | --- |
 |reply_id|number|10|primary key|回复的id|
 |guestbook_id|number|10|foreign key|留言的id|
 |host_user_name|varchar2|20|foreign key|执行回复操作的用户名|
