@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reply_dao {
+    //添加回复
     public Reply addReply(Reply reply) throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -31,6 +32,7 @@ public class Reply_dao {
         return reply;
     }
 
+    //显示回复
     public List<Reply> showReply() throws Exception {
         Connection conn = null;
         PreparedStatement ps = null;

@@ -31,8 +31,6 @@ public class RegisterServlet extends HttpServlet {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        //HttpSession session = request.getSession();
-
         UserInfo userInfo = new UserInfo();
         Register_dao register_dao = new Register_dao();
 

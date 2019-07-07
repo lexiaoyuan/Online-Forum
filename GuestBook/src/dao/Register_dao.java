@@ -23,5 +23,4 @@ public class Register_dao {
         }
         return userInfo;
     }
-
 }

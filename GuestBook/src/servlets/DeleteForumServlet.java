@@ -16,7 +16,6 @@ public class DeleteForumServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String guestbook_id = request.getParameter("guestbook_id");
-
         String toast;
 
         GuestBook guestBook = new GuestBook();

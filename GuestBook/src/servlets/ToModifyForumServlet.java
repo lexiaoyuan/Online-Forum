@@ -22,7 +22,6 @@ public class ToModifyForumServlet extends HttpServlet {
         GuestBook guestBook = new GuestBook();
         SearchGuestBook_dao searchGuestBook_dao = new SearchGuestBook_dao();
 
-
         try {
             guestBook.setGuestbook_id(guestbook_id);
             List<GuestBook> guestBookList;

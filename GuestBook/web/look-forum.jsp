@@ -100,10 +100,10 @@
                         <img class="mr-3" src="./img/github.png" alt="头像">
                         <div class="media-body">
                             <div class="row justify-content-between">
-                                <div class="col">
+                                <div class="col-8">
                                     <h5 class="mt-0 mb-1">${guestBookList.guestbook_title}</h5>
                                 </div>
-                                <div class="col">
+                                <div class="col-4">
                                     <small class="float-right">
                                         <c:if test="${guestBookList.user_name == sessionScope.username}">
                                             <a href="ToModifyForumServlet?guestbook_id=${guestBookList.guestbook_id}">修改</a>
