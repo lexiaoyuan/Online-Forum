@@ -1,6 +1,6 @@
 create table user_info (
 user_name varchar2(20) primary key,
-user_pwd varchar2(20));
+user_pwd varchar2(20) not null);
 
 create table guestbook (
 guestbook_id number(10, 0) primary key,
@@ -38,7 +38,7 @@ select table_name from user_tables;
 
 insert into user_info values('lexiaoyuan', 'lexiaoyuan');commit;
 
-create sequence guestbook_id_seq start with 2019070400 increment by 1;
+create sequence guestbook_id_seq start with 2019070400 increment by 1 nocache;
 
 insert into guestbook values(guestbook_id_seq.nextval, 'admin', 'testTitle1', 'testContent1', SYSDATE);commit;
 
@@ -56,10 +56,14 @@ alter table reply modify reply_content varchar2(100);
 
 drop table reply cascade constraints;
 
-create sequence reply_id_seq start with 2019070600 increment by 1;
+create sequence reply_id_seq start with 2019070600 increment by 1 nocache;
 
 select * from reply order by guestbook_id;
 
 select * from guestbook order by guestbook_id desc;
 
 select * from reply order by guestbook_id desc;
+
+alter sequence guestbook_id_seq nocache;
+
+alter sequence reply_id_seq nocache;
