@@ -17,31 +17,13 @@
 
 - 表2-2 user_info表结构及其约束
 
-| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
-| --- | --- | --- | --- | --- | --- |
-|user_name|varchar2|20|primary key|用户名|
-|user_pwd|varchar2|20|not null|	用户密码|
+![image](./img/user_info表结构.png)
 
 - 表2-3 guestbook表结构及其约束
-
-| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
-| --- | --- | --- | --- | --- | --- |
-|guestbook_id|number|10|primary key|留言的id|
-|user_name|varchar2|20|foreign key|用户名|
-|guestbook_title|varchar2|100|not null|留言的标题|
-|guestbook_content|varchar2|2000|not null|留言的内容|
-|guestbook_date|date||not null|留言的时间|
+![image](./img/guestbook表结构.png)
 
 - 表2-4 reply表结构及其约束
-
-| 字段名 | 数据类型 | 长度 | 约束 | 说明 |
-| --- | --- | --- | --- | --- | --- |
-|reply_id|number|10|primary key|回复的id|
-|guestbook_id|number|10|foreign key|留言的id|
-|host_user_name|varchar2|20|foreign key|执行回复操作的用户名|
-|guest_user_name|varchar2|20|foreign key|发留言的用户名|
-|reply_content|varchar2|100|not null|回复的内容|
-|reply_date|date||not null|回复的时间|
+![image](./img/reply表结构.png)
 
 - 表之间的关系图见图2-2：
 ![image](./img/GUESTBOOKSQL.png)
@@ -94,3 +76,84 @@ create sequence reply_id_seq start with 2019070600 increment by 1 nocache;
 图4-3 发表留言界面
 #### 4.3查看留言界面设计
 > 每一个用户都可以查看到所有的留言，并且也可以回复所有的留言，但是只能修改和删除自己发表的留言。查看留言部分界面如图4-4所示。
+![image](./img/查看留言.png)
+图4-4 查看留言界面
+
+#### 4.4修改留言界面设计
+> 每个用户在查看留言页面可以看到在自己发表的留言的右上角有一个修改链接，点击修改，可跳转至修改留言界面，在原有内容上进行修改，点击修改按钮即可。每个用户只能修改自己的留言，不是自己发表的留言不会出现修改链接，无法修改。修改留言界面如图4-5所示。
+
+### 5.网上论坛主要功能实现
+#### 5.1网上论坛设计概述
+> 本系统采用`JSP`+`Servlet`+`JavaBean`+`DAO`+`JDBC`+`Oracle`+`Bootstrap`+`Layer`+`HTML`+`CSS`+
+`JavaScript`+`EL`+`JSTL`等技术开发，使用`IntelliJ IDEA`、`Tomcat`、 `Database Configuration Assistant`、`sqldeveloper`、`Chrome`、`Sublime Text`等工具进行开发。
+使用的开发环境以及开发工具的版本如表5-1所示。
+
+- 表5-1 开发环境以及开发工具
+![image](./img/开发工具及环境.png)
+表5-1 开发环境以及开发工具
+
+- 架构图如图5-1所示：
+![image](./img/架构图.png)
+图5-1 架构图
+
+#### 5.2系统目录结构
+- 系统的目录结构如下：
+```
+//java代码部分
+.src
+│  db.properties  //连接数据库的配置文件
+│
+├─beans
+│      GuestBook.java  //对应guestbook表，包含该表中字段的set和get方法
+│      Reply.java  //对应reply表，包含该表中字段的set和get方法
+│      UserInfo.java  //对应user_info表，包含表中字段的set和get方法
+│
+├─dao
+│      GuestBook_dao.java   //进行留言的增删改查
+│      Register_dao.java    //添加用户
+│      Reply_dao.java   //进行回复的添加和查找显示
+│      SearchGuestBook_dao.java   //通过guestbook_id查找留言，修改留言是用到
+│
+├─dbc
+│      JdbcUtil.java   //数据库的连接和释放资源工具
+│
+└─servlets
+        DeleteForumServlet.java   //实现删除留言操作
+        ForumServlet.java   //实现发表留言操作
+        LoginServlet.java   //实现登录操作
+        LookForumServlet.java   //实现查看留言操作
+        ModifyForumServlet.java   //实现修改留言操作
+        RegisterServlet.java   //实现注册操作
+        ReplyForumServlet.java   //实现回复操作
+        ToModifyForumServlet.java  //协助实现修改留言操作
+//web部分的目录结构
+.web
+│  forum.jsp   //发表留言页面
+│  index.jsp   //默认入口页面、登录页面
+│  look-forum.jsp   //查看留言页面
+│  modify-forum.jsp   //修改留言页面
+│  register.jsp   //注册页面
+│
+├─css
+│      forum.css   //发表留言页面css样式
+│      login.css  //登录、注册页面样式
+│
+├─img
+│      avatar.png  //头像
+│      github.png   //logo
+│
+├─layer   //layer组件库
+│  
+│
+└─WEB-INF
+    │  web.xml   //Servlet的配置
+    │
+    └─lib
+            jstl.jar  //jstl的jar包
+            standard.jar  //jstl的jar包
+```
+### 5.3注册功能实现
+> 用户在注册页面输入用户名和密码、确认密码后，点击注册按钮，即可注册。本系统中每个用户的用户名是唯一的，不能相同，在注册时如果用户名相同，会提示该用户已注册，用户需要重新输入用户名。如果用户名为被注册过，点击注册按钮后会提示注册成功，并跳转至登录页面。
+
+
+
