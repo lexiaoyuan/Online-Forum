@@ -154,6 +154,406 @@ create sequence reply_id_seq start with 2019070600 increment by 1 nocache;
 ```
 ### 5.3注册功能实现
 > 用户在注册页面输入用户名和密码、确认密码后，点击注册按钮，即可注册。本系统中每个用户的用户名是唯一的，不能相同，在注册时如果用户名相同，会提示该用户已注册，用户需要重新输入用户名。如果用户名为被注册过，点击注册按钮后会提示注册成功，并跳转至登录页面。
+```java
+//RegisterServlet.java核心代码：
+conn = JdbcUtil.getConnection();
+String checkRegisterSql = "select user_name from user_info where user_name = ?";
+ps = conn.prepareStatement(checkRegisterSql);
+ps.setString(1, username);
+rs = ps.executeQuery();
+if (!rs.next()) {
+    userInfo.setUsername(username);
+    userInfo.setUserpwd(userpwd);
+    register_dao.addUserInfo(userInfo);
+    toast = "注册成功";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+} else {
+    toast = "该用户名已注册";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("register.jsp").forward(request, response);
+}
+```
+```java
+// Register_dao.java核心代码：
+public class Register_dao {
+    public UserInfo addUserInfo(UserInfo userInfo) throws Exception {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = JdbcUtil.getConnection();
+            String addUserInfoSql = "insert into user_info values(?, ?)";
+            ps = conn.prepareStatement(addUserInfoSql);
+            ps.setString(1, userInfo.getUsername());
+            ps.setString(2, userInfo.getUserpwd());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userInfo;
+    }
+}
+```
+#### 5.4登录功能实现
+> 用户在登录页面输入用户名和密码，点击登录按钮，即可登录。如果用户名未注册或用户名和密码不匹配会提示账号或密码错误，用户需要重新输入用户名和密码。如果用户名和密码均输入正确并且匹配，会提示登录成功，并跳转至发表留言页面。
+```java
+//LoginServlet.java核心代码：
+conn = JdbcUtil.getConnection();
+String checkLoginSql = "select user_name from user_info where user_name = ? and user_pwd = ?";
+ps = conn.prepareStatement(checkLoginSql);
+ps.setString(1, username);
+ps.setString(2, userpwd);
+rs = ps.executeQuery();
+if (rs.next()) {
+    toast = "登录成功";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("forum.jsp").forward(request, response);
+} else {
+    toast = "账号或密码错误";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+}
+```
+#### 5.5发表留言功能实现
+> 用户在发表留言页面输入留言标题和留言内容，点击发表按钮，即可发表留言。发表成功后会提示发表成功并跳转至查看留言页面。在发表留言页面用户也可以直接点击查看留言，会跳转至查看留言页面。最新发布的留言会显示在最上面。
 
+```java
+//ForumServlet.java核心代码：
+GuestBook guestBook = new GuestBook();
 
+guestBook.setGuestbook_title(guestBook_title);
+guestBook.setGuestbook_content(guestBook_content);
+guestBook.setUser_name(username);
 
+GuestBook_dao guestBook_dao = new GuestBook_dao();
+try {
+    guestBook_dao.addGuestBook(guestBook);
+    toast = "发表成功";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+} catch (Exception e) {
+    toast = "发表失败";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+    e.printStackTrace();
+}
+```
+```java
+//GuestBook_dao.java添加留言核心代码：
+public GuestBook addGuestBook(GuestBook guestBook) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    try {
+        conn = JdbcUtil.getConnection();
+        String addGuestBookSql = "insert into guestbook values(guestbook_id_seq.nextval, ?, ?, ?, SYSDATE)";
+        ps = conn.prepareStatement(addGuestBookSql);
+        ps.setString(1, guestBook.getUser_name());
+        ps.setString(2, guestBook.getGuestbook_title());
+        ps.setString(3, guestBook.getGuestbook_content());
+        ps.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(null, ps, conn);
+    }
+    return guestBook;
+}
+```
+#### 5.5查看留言功能实现
+> 在查看留言页面，用户可以查看所有的留言和所有的回复，并且可以回复所有的留言，同时可以对自己发表的留言进行修改和删除。在自己发表的留言的右上角会出现修改和删除链接，点击修改会跳转到修改留言页面，点击删除可删除该留言。
+```java
+//LookForumServlet.java核心代码：
+List<GuestBook> guestBookList;
+guestBookList = guestBook_dao.lookGuestBook(guestBook);
+Collections.reverse(guestBookList);
+request.setAttribute("guestBookList", guestBookList);
+
+List<Reply> replyList;
+replyList = reply_dao.showReply();
+request.setAttribute("replyList", replyList);
+
+request.getRequestDispatcher("look-forum.jsp").forward(request, response);
+```
+```java
+//GuestBook_dao.java查看留言核心代码：
+public List<GuestBook> lookGuestBook(GuestBook guestBook) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    List<GuestBook> guestBookList = new ArrayList<GuestBook>();
+    try {
+        conn = JdbcUtil.getConnection();
+        String lookGuestBookSql = "select * from guestbook order by guestbook_id";
+        ps = conn.prepareStatement(lookGuestBookSql);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            GuestBook guestBook1 = new GuestBook();
+            guestBook1.setGuestbook_id(rs.getString(1));
+            guestBook1.setUser_name(rs.getString(2));
+            guestBook1.setGuestbook_title(rs.getString(3));
+            guestBook1.setGuestbook_content(rs.getString(4));
+            guestBook1.setGuestbook_date(rs.getString(5));
+            guestBookList.add(guestBook1);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(rs, ps, conn);
+    }
+    return guestBookList;
+}
+```
+#### 5.6修改留言功能实现
+> 用户在查看留言页面可以在自己发表的留言的右上角看到一个修改的链接，点击修改可跳转至修改页面，在修改页面的标题和留言内容部分会直接显示需要修改的留言的内容，用户可以直接在原有的留言基础山进行修改，不需要重新输入原有的内容，修改后点击修改按钮即可修改，修改成功后会提示修改成功，并跳转至查看留言页面，修改留言时留言的时间不会被修改，仍会保持原有的时间，所以修改后的留言不会被显示在最上面。
+```java
+// ToModifyForumServlet.java核心代码：
+guestBook.setGuestbook_id(guestbook_id);
+List<GuestBook> guestBookList;
+guestBookList = searchGuestBook_dao.searchById(guestBook);
+
+HttpSession session = request.getSession();
+session.setAttribute("guestBook_id", guestbook_id);
+session.setAttribute("username", guestBookList.get(0).getUser_name());
+session.setAttribute("guestBook_title", guestBookList.get(0).getGuestbook_title());
+session.setAttribute("guestBook_content", guestBookList.get(0).getGuestbook_content());
+
+request.getRequestDispatcher("modify-forum.jsp").forward(request, response);
+```
+// SearchGuestBook_dao.java核心代码：
+public List<GuestBook> searchById(GuestBook guestBook) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    List<GuestBook> guestBookList = new ArrayList<>();
+    try {
+        conn = JdbcUtil.getConnection();
+        String lookGuestBookSql = "select * from guestbook where guestbook_id = ?";
+        ps = conn.prepareStatement(lookGuestBookSql);
+        ps.setString(1, guestBook.getGuestbook_id());
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            GuestBook guestBook1 = new GuestBook();
+            guestBook1.setUser_name(rs.getString(2));
+            guestBook1.setGuestbook_title(rs.getString(3));
+            guestBook1.setGuestbook_content(rs.getString(4));
+            guestBookList.add(guestBook1);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(rs, ps, conn);
+    }
+    return guestBookList;
+}
+```
+```java
+//ModifyForumServlet.java核心代码：
+GuestBook guestBook = new GuestBook();
+
+guestBook.setGuestbook_id(guestBook_id);
+guestBook.setGuestbook_title(guestBook_title);
+guestBook.setGuestbook_content(guestBook_content);
+guestBook.setUser_name(username);
+
+GuestBook_dao guestBook_dao = new GuestBook_dao();
+try {
+    guestBook_dao.modifyGuestBook(guestBook);
+    toast = "修改成功";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+} catch (Exception e) {
+    toast = "修改失败";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+    e.printStackTrace();
+}
+```
+```java
+//GuestBook_dao.java修改留言核心代码：
+public void modifyGuestBook(GuestBook guestBook) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+
+    try {
+        conn = JdbcUtil.getConnection();
+        String modifyGuestBookSql = "update guestbook set guestbook_title=?, guestbook_content=? where guestbook_id=?";
+        ps = conn.prepareStatement(modifyGuestBookSql);
+        ps.setString(1, guestBook.getGuestbook_title());
+        ps.setString(2, guestBook.getGuestbook_content());
+        ps.setString(3, guestBook.getGuestbook_id());
+        ps.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(null, ps, conn);
+    }
+}
+```
+#### 5.7删除留言功能实现
+> 用户在查看留言页面可以看到自己发表的留言的右上角会有一个删除链接，点击删除，即可删除留言。删除成功后会提示删除成功，并刷新查看留言页面。
+```java
+//DeleteForumServlet.java核心代码：
+request.setCharacterEncoding("UTF-8");
+
+String guestbook_id = request.getParameter("guestbook_id");
+String toast;
+
+GuestBook guestBook = new GuestBook();
+GuestBook_dao guestBook_dao = new GuestBook_dao();
+
+guestBook.setGuestbook_id(guestbook_id);
+try {
+    guestBook_dao.deleteGuestBook(guestBook);
+    toast = "删除成功";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+```java
+//GuestBook_dao.java删除留言核心代码：
+public void deleteGuestBook(GuestBook guestBook) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+
+    try {
+        conn = JdbcUtil.getConnection();
+        String deleteGuestBookSql = "delete from guestbook where guestbook_id = ?";
+        ps = conn.prepareStatement(deleteGuestBookSql);
+        ps.setString(1, guestBook.getGuestbook_id());
+        ps.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(null, ps, conn);
+    }
+}
+```
+#### 5.8回复功能实现
+> 在查看留言页面，每一条留言的最下方会有一个回复的输入框和一个回复按钮，在回复的输入框内输入内容后，点击回复按钮，即可回复该留言。回复成功后，会提示回复成功，并刷新查看留言页面。
+```java
+//ReplyForumServlet.java核心代码：
+guestBook.setGuestbook_id(guestBookId);
+List<GuestBook> guestBookList = new ArrayList<>();
+guestBookList = searchGuestBook_dao.searchById(guestBook);
+
+reply.setGuestbook_id(guestBookId);
+reply.setReply_content(replyText);
+reply.setGuest_user_name(guestBookList.get(0).getUser_name());   //发留言的用户名
+reply.setHost_user_name(hostUsername);  //执行回复操作的用户名
+
+Reply_dao reply_dao = new Reply_dao();
+try {
+    reply_dao.addReply(reply);
+    toast = "回复成功";
+    request.setAttribute("toast", toast);
+
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+} catch (Exception e) {
+    toast = "回复失败";
+    request.setAttribute("toast", toast);
+    request.getRequestDispatcher("LookForumServlet").forward(request, response);
+    e.printStackTrace();
+}
+```
+```java
+//Reply_dao.java添加回复核心代码：
+public Reply addReply(Reply reply) throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    try {
+        conn = JdbcUtil.getConnection();
+        String addGuestBookSql = "insert into reply values(reply_id_seq.nextval, ?, ?, ?, ?, SYSDATE)";
+        ps = conn.prepareStatement(addGuestBookSql);
+        ps.setString(1, reply.getGuestbook_id());
+        ps.setString(2, reply.getHost_user_name());
+        ps.setString(3, reply.getGuest_user_name());
+        ps.setString(4, reply.getReply_content());
+        ps.executeUpdate();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(null, ps, conn);
+    }
+
+    return reply;
+}
+```
+```java
+//Reply_dao.java显示回复核心代码：
+public List<Reply> showReply() throws Exception {
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    List<Reply> replyList = new ArrayList<>();
+    try {
+        conn = JdbcUtil.getConnection();
+        String showReplySql = "select * from reply order by guestbook_id,reply_date desc";
+        ps = conn.prepareStatement(showReplySql);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            Reply reply1 = new Reply();
+            reply1.setGuestbook_id(rs.getString(2));
+            reply1.setHost_user_name(rs.getString(3));
+            reply1.setGuest_user_name(rs.getString(4));
+            reply1.setReply_content(rs.getString(5));
+            reply1.setReply_date(rs.getString(6));
+            replyList.add(reply1);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        JdbcUtil.free(rs, ps, conn);
+    }
+
+    return replyList;
+}
+```
+#### 5.9连接数据库工具实现
+> 设计了一个专门用于连接数据库和释放连接资源的工具类，在该工具类的静态初始化容器中的写入获取配置的代码，该代码在装入类时执行，且只执行一次。
+```java
+//JdbcUtil.java核心代码：
+static {
+    try {
+        properties.load(JdbcUtil.class.getClassLoader().getResourceAsStream("db.properties"));
+        driver = properties.getProperty("driver");
+        url = properties.getProperty("url");
+        user = properties.getProperty("username");
+        password = properties.getProperty("password");
+        Class.forName(driver);
+    } catch (Exception e) {
+        throw new ExceptionInInitializerError(e);
+    }
+}
+
+//设计获得连接对象的方法getConnection()
+public static Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(url, user, password);
+}
+
+//设计释放结果集、语句和连接的方法free()
+public static void free(ResultSet rs, PreparedStatement ps, Connection conn) {
+    try {
+        if (rs != null) {
+            rs.close();
+        }
+        if (ps != null) {
+            ps.close();
+        }
+        if (conn != null) {
+            conn.close();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+```
+```java
+//db.properties配置数据库连接信息
+driver=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@localhost:1521: guestbook
+username=system
+password=admin
+```
