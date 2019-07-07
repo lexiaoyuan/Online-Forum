@@ -319,6 +319,7 @@ session.setAttribute("guestBook_content", guestBookList.get(0).getGuestbook_cont
 
 request.getRequestDispatcher("modify-forum.jsp").forward(request, response);
 ```
+```java
 // SearchGuestBook_dao.java核心代码：
 public List<GuestBook> searchById(GuestBook guestBook) throws Exception {
     Connection conn = null;
